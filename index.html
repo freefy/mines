@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地雷小游戏</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="startBtn" id="startBtn">
+        </div>
+        <div class="reGame" id="reGame">RESTART</div>
+        <div class="choose" id="choose">
+            <ul>
+                <li id="one">easy</li>
+                <li id="two">normal</li>
+                <li id="three">difficult</li>
+            </ul>
+        </div>
+        <div class="mainer" id="mainer">
+            <div class="mines">剩余地雷数:
+                <span class="number" id="number">33</span>
+                已用时间:
+                <span class="time" id="time">0</span>
+            </div>
+
+
+            <div class="box" id="box"></div>
+        </div>
+        <div class="result" id="result">
+            <div class="resultShow" id="resultShow">
+                <div class="close" id="close"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

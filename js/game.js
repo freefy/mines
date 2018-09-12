@@ -9,14 +9,9 @@ obj = {
         this.resultShow = document.getElementById('resultShow');
         this.choose = document.getElementById('choose');
         this.reGame = document.getElementById('reGame');
-        // this.area;
-        // this.minesNum;
-        // this.mineOver;
-        this.one = document.getElementById('one');
-        this.two = document.getElementById('two');
-        this.three = document.getElementById('three');
-        // this.model;
-        // this.space;
+        this.easy = document.getElementById('easy');
+        this.nor = document.getElementById('nor');
+        this.dif = document.getElementById('dif');
         this.arr = [];
         this.min = 0;
         this.timer = null;
@@ -67,20 +62,20 @@ blinkEvent:function () {
         _this.startBtn.style.display = "none";
         _this.choose.style.display = "block";
     }
-    this.one.onclick = function () {
+    this.easy.onclick = function () {
         _this.model = 10;
        _this.space = 10;
         _this.bgMine(); //初始化游戏区
         _this.startGame();
 
     }
-    this.two.onclick = function () {
+    this.nor.onclick = function () {
         _this.model = 20;
         _this.space = 20;
         _this.bgMine(); //初始化游戏区
         _this.startGame();
     }
-    this.three.onclick = function () {
+    this.dif.onclick = function () {
         _this.model = 30;
         _this.space = 30;
         _this.bgMine(); //初始化游戏区
@@ -142,6 +137,7 @@ leftOnclick:function (dom) {
             isLei[i].classList.add('show');
             clearTimeout(_this.timer);
             setTimeout(function () {
+                _this.resultShow.style.backgroundImage = "url('./images/gameOver.jpg')";
                 _this.result.style.display = "block";
             }, 400)
         }

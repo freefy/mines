@@ -4,11 +4,11 @@
 }
 
 .wrapper {
-    width: 100%;
-    height: 630px;
     position: fixed;
     left: 0;
     top: 0;
+    width: 100%;
+    height: 630px;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -16,95 +16,98 @@
     background-size: 100% 100%;
 }
 
-
-.startBtn,.reGame{
-    background-color:rgb(59, 57, 61);
-    width:100px;
-    height:50px;
+.startBtn,
+.reGame {
     position: absolute;
     left: 0px;
     top: 60px;
+    width: 100px;
+    height: 50px;
     border-radius: 15px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+    color: rgb(223, 215, 215);
+    background-color: rgb(59, 57, 61);
     cursor: pointer;
-    z-index:999;
-    line-height:50px;
-    text-align:center;
-    font-size:20px;
-    font-weight:bolder;
-    color:rgb(223, 215, 215);
+    z-index: 999;
 }
+
 .startBtn {
     left: 120px;
 }
-ul{
+
+ul {
     list-style: none;
 }
- .choose{
-    display:none;
-    width:100px;
-    height:200px;
-    position:absolute;
+
+.choose {
+    display: none;
+    position: absolute;
     left: 100px;
     top: 200px;
+    width: 100px;
+    height: 200px;
+    text-align: center;
     cursor: pointer;
     z-index: 999;
-    text-align:center;
-} 
-.choose li{
-    margin-top:5px;
-    background-color:rgb(59, 57, 61);
-    font-size:20px;
-    font-weight:bolder;
-    height:40px;
-    line-height:40px;
-    border-radius:10px;
-    color:rgb(223, 215, 215);
 }
 
+.choose li {
+    height: 40px;
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+    line-height: 40px;
+    border-radius: 10px;
+    color: rgb(223, 215, 215);
+    background-color: rgb(59, 57, 61);
+}
 
 .mainer {
     display: none;
     width: auto;
     height: 630px;
-
 }
 
-
 .mines {
-    width: 400px;
-    height: 50px;
-    line-height: 50px;
     position: absolute;
     top: 40px;
     left: 50%;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
     margin-left: -100px;
     font-size: 18px;
     font-weight: bolder;
     color: #333;
 }
-.number{
-    margin-right:50px;
+
+.number {
+    margin-right: 50px;
 }
 
 .box {
     width: 500px;
     height: 500px;
+    margin: 30px auto;
     border-left: 1px solid grey;
     border-top: 1px solid grey;
     transform: perspective(800px) rotateX(45deg);
-    margin: 30px auto;
+
 }
 
-.result{
+.result {
     display: none;
-    width: 100%;
-    height: 600px;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 600px;
 }
+
 .resultShow {
-    background-size: 100% 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -114,25 +117,26 @@ ul{
     width: 200px;
     height: 200px;
     border-radius: 20px;
+    background-size: 100% 100%;
 }
 
 .close {
-    width: 40px;
-    height: 40px;
     position: absolute;
     right: 0;
     top: 0;
+    width: 40px;
+    height: 40px;
     background-image: url('../images/shut.png');
     background-size: 100% 100%;
     cursor: pointer;
 }
 
 .block {
-    background-image: url('../images/block.jpg');
-    background-size: 100% 100%;
+    float: left;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
-    float: left;
+    background-image: url('../images/block.jpg');
+    background-size: 100% 100%;
 }
 
 .show {
@@ -143,7 +147,7 @@ ul{
 .num {
     font-weight: bolder;
     text-align: center;
-    background:rgb(228, 148, 201);
+    background: rgb(228, 148, 201);
 }
 
 .flag {

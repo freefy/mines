@@ -1,143 +1,133 @@
-var startBtn = document.getElementById('startBtn');
-var mainer = document.getElementById('mainer');
-var close = document.getElementById('close');
-var number = document.getElementById('number');
-var box = document.getElementById('box');
-var result = document.getElementById('result');
-var resultShow= document.getElementById('resultShow');
-var choose = document.getElementById('choose');
-var reGame = document.getElementById('reGame');
-var area;
-
-var minesNum;
-var mineOver;
-var one = document.getElementById('one');
-var two = document.getElementById('two');
-var three = document.getElementById('three');
-var model;
-var space;
-var arr = [];
-var min = 0;
-var timer = null;
-var time = document.getElementById('time');
-
-
-
-
-init();
-
-function init() {
-    blinkEvent(); //点击事件声明
-}
+obj = {
+    init: function () {
+        this.startBtn = document.getElementById('startBtn');
+        this.mainer = document.getElementById('mainer');
+        this.close = document.getElementById('close');
+        this.number = document.getElementById('number');
+        this.box = document.getElementById('box');
+        this.result = document.getElementById('result');
+        this.resultShow = document.getElementById('resultShow');
+        this.choose = document.getElementById('choose');
+        this.reGame = document.getElementById('reGame');
+        this.easy = document.getElementById('easy');
+        this.nor = document.getElementById('nor');
+        this.dif = document.getElementById('dif');
+        this.arr = [];
+        this.min = 0;
+        this.timer = null;
+        this.time = document.getElementById('time');
+        this.blinkEvent();
+    },
 //游戏区初始化
-function bgMine() {
-    for (var i = 0; i < space; i++) {
-        for (var j = 0; j < space; j++) {
+bgMine:function() {
+    for (var i = 0; i < this.space; i++) {
+        for (var j = 0; j < this.space; j++) {
             con = document.createElement('div');
             con.classList.add('block');
-            var oWidth = parseInt(getComputedStyle(box).width);
-            var oHeight = parseInt(getComputedStyle(box).height);
-            con.style.width = (oWidth / space - 1) + 'px';
-            con.style.height = (oHeight / space - 1) + 'px';
-            con.style.lineHeight = (oHeight / space - 1) + 'px';
-
+            var oWidth = parseInt(getComputedStyle(this.box).width);
+            var oHeight = parseInt(getComputedStyle(this.box).height);
+            con.style.width = (oWidth / this.space - 1) + 'px';
+            con.style.height = (oHeight / this.space - 1) + 'px';
+            con.style.lineHeight = (oHeight / this.space - 1) + 'px';
             con.setAttribute('id', i + '-' + j);
-            box.appendChild(con);
-            arr.push({
+            this.box.appendChild(con);
+            this.arr.push({
                 mines: 0
             });
         }
     }
-}
+},
 //产雷
-function produceMine() {
-
-    minesNum = model;
-    mineOver = model;
-    number.innerHTML = mineOver;
-    area = document.getElementsByClassName('block');
-    while (minesNum) {
-        var mine = Math.floor(Math.random() * space * space);
-        if (arr[mine].mines == 0) {
-            arr[mine].mines = 1;
-            area[mine].classList.add("isLei");
-            minesNum--;
+produceMine:function () {
+    this.minesNum = this.model;
+    this.mineOver = this.model;
+    this.number.innerHTML = this.mineOver;
+    this.area = document.getElementsByClassName('block');
+    while (this.minesNum) {
+        var mine = Math.floor(Math.random() * this.space * this.space);
+        if (this.arr[mine].mines == 0) {
+            this.arr[mine].mines = 1;
+            this.area[mine].classList.add("isLei");
+            this.minesNum--;
         }
 
 
     }
-}
+},
 //点击事件声明
-function blinkEvent() {
-    startBtn.onclick = function () {
-        startBtn.style.display = "none";
-        choose.style.display = "block";
+blinkEvent:function () {
+    var _this = this;
+    this.startBtn.onclick = function () {
+        _this.startBtn.style.display = "none";
+        _this.choose.style.display = "block";
     }
-    one.onclick = function () {
-        model = 10;
-        space = 10;
-        bgMine(); //初始化游戏区
-
-        startGame();
-
-    }
-    two.onclick = function () {
-        model = 20;
-        space = 20;
-        bgMine(); //初始化游戏区
-        startGame();
-    }
-    three.onclick = function () {
-        model = 30;
-        space = 30;
-        bgMine(); //初始化游戏区
-
-        startGame();
-    }
-    reGame.onclick = function () {
-        result.style.display = "none";
-        mainer.style.display = "none";
-        box.innerHTML = "";
-        startBtn.style.display = "block";
-        init();
-        clearInterval(timer);
-        min = 0;
-        time.innerHTML = '0';
+    this.easy.onclick = function () {
+        _this.model = 10;
+       _this.space = 10;
+        _this.bgMine(); //初始化游戏区
+        _this.startGame();
 
     }
-    box.oncontextmenu = function () {
+    this.nor.onclick = function () {
+        _this.model = 20;
+        _this.space = 20;
+        _this.bgMine(); //初始化游戏区
+        _this.startGame();
+    }
+    this.dif.onclick = function () {
+        _this.model = 30;
+        _this.space = 30;
+        _this.bgMine(); //初始化游戏区
+
+        _this.startGame();
+    }
+    this.reGame.onclick = function () {
+        clearInterval(_this.timer);
+        _this.result.style.display = "none";
+        _this.mainer.style.display = "none";
+        _this.box.innerHTML = "";
+        _this. startBtn.style.display = "block";
+        _this.init();
+        clearInterval(_this.timer);
+        _this.min = 0;
+        _this.time.innerHTML = '0';
+
+    }
+    this.box.oncontextmenu = function () {
         return false;
     }
-    box.onmousedown = function (e) {
+    this.box.onmousedown = function (e) {
         var event = e.target;
         if (e.which == 1) {
-            leftOnclick(event);
+            _this.leftOnclick(event);
         } else if (e.which == 3) {
-            rightOnclick(event);
+            _this.rightOnclick(event);
         }
     }
-    close.onclick = function () {
-        result.style.display = "none";
-        mainer.style.display = "none";
-        box.innerHTML = "";
-        init();
+    this.close.onclick = function () {
+        _this.result.style.display = "none";
+        _this.mainer.style.display = "none";
+        _this.box.innerHTML = "";
+        _this.init();
     }
 
-}
+},
 
-function startGame() {
-    clearInterval(timer);
-    choose.style.display = "none";
-    mainer.style.display = "block";
+startGame:function () {
+    var _this = this;
+    clearInterval(_this.timer);
+    this.choose.style.display = "none";
+    this.mainer.style.display = "block";
 
-    produceMine(); //产雷
+    this.produceMine(); //产雷
 
-    timer = setInterval(function () {
-        time.innerHTML = ++min;
+    this.timer = setInterval(function () {
+        _this.time.innerHTML = ++_this.min;
     }, 1000);
-}
+},
 
-function leftOnclick(dom) {
+leftOnclick:function (dom) {
+    var _this = this;
     if (dom.classList.contains('flag')) {
         return;
     }
@@ -145,9 +135,10 @@ function leftOnclick(dom) {
     if (dom && dom.classList.contains('isLei')) {
         for (var i = 0; i < isLei.length; i++) {
             isLei[i].classList.add('show');
-            clearTimeout(timer);
+            clearTimeout(_this.timer);
             setTimeout(function () {
-                result.style.display = "block";
+                _this.resultShow.style.backgroundImage = "url('./images/gameOver.jpg')";
+                _this.result.style.display = "block";
             }, 400)
         }
     } else {
@@ -173,7 +164,7 @@ function leftOnclick(dom) {
                     if (near && near.length != 0) {
                         if (near && !near.classList.contains('check')) {
                             near.classList.add('check');
-                            leftOnclick(near);
+                            this.leftOnclick(near);
                         }
 
                     }
@@ -184,25 +175,26 @@ function leftOnclick(dom) {
 
 
     }
-}
-
-function rightOnclick(dom) {
-
+},
+rightOnclick:function (dom) {
+    var _this=this; 
     if (dom.classList.contains('num')) {
         return;
     } else {
         dom.classList.toggle('flag');
         if (dom.classList.contains('flag') && dom.classList.contains('isLei')) {
-            mineOver--;
+            this.mineOver--;
         }
         if (!dom.classList.contains('flag') && dom.classList.contains('isLei')) {
-            mineOver++;
+            this.mineOver++;
         }
     }
-    number.innerHTML = mineOver;
-    if (mineOver == 0) {
-        result.style.display = "block";
-        resultShow.style.backgroundImage = "url('./images/success.jpg')";
-        clearTimeout(timer);
+    this.number.innerHTML = this.mineOver;
+    if (this.mineOver == 0) {
+        this.result.style.display = "block";
+        this.resultShow.style.backgroundImage = "url('./images/success.jpg')";
+        clearTimeout(_this.timer);
     }
 }
+}
+obj.init();

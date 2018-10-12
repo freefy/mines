@@ -57,10 +57,12 @@ produceMine:function () {
 //点击事件声明
 blinkEvent:function () {
     var _this = this;
+    //游戏开始
     this.startBtn.onclick = function () {
         _this.startBtn.style.display = "none";
         _this.choose.style.display = "block";
     }
+    //游戏难度选择--区域与地雷数的增加
     this.easy.onclick = function () {
         _this.model = 10;
        _this.space = 10;
@@ -81,6 +83,7 @@ blinkEvent:function () {
 
         _this.startGame();
     }
+    //重新开始游戏
     this.reGame.onclick = function () {
         clearInterval(_this.timer);
         _this.result.style.display = "none";
@@ -96,6 +99,7 @@ blinkEvent:function () {
     this.box.oncontextmenu = function () {
         return false;
     }
+    //扫雷区左扫雷,右插旗
     this.box.onmousedown = function (e) {
         var event = e.target;
         if (e.which == 1) {
@@ -132,6 +136,7 @@ leftOnclick:function (dom) {
         return;
     }
     var isLei = document.getElementsByClassName('isLei');
+    //点到雷--雷全部显示出来
     if (dom && dom.classList.contains('isLei')) {
         for (var i = 0; i < isLei.length; i++) {
             isLei[i].classList.add('show');
@@ -142,7 +147,7 @@ leftOnclick:function (dom) {
             }, 400)
         }
     } else {
-        var n = 0;
+        var n = 0;//记地雷数
         var pos = dom.getAttribute('id').split('-');
         var posX = dom && +pos[0];
         var posY = dom && +pos[1];
